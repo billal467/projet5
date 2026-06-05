@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe — Noire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600&display=swap"
+    rel="stylesheet"
+  >
+  <script src="https://kit.fontawesome.com/2edc9a703d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/style2-about.css">
+  <link rel="stylesheet" href="css/shop.css">
+  <link rel="icon" href="images/Gemini_Generated_Image_udci8dudci8dudci.png" type="image/png">
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav>
+    <div class="logo-wrap">
+      <img src="images/cafe_noire_logo.svg" height="50" alt="Café Noire">
+    </div>
+    <ul class="nav-links">
+      <li><a href="html/index.html">Home</a></li>
+      <li><a class="active" href="#">Shop</a></li>
+      <li><a href="html/About.html">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="html/Login.html">
+      <button class="nav-icon-btn"><i class="fa-solid fa-circle-user"></i></button>
+      <div class="cart-nav-wrap" id="cartIconWrap">
+        <button class="cart-icon-btn"></a>
+          <i class="fa-solid fa-cart-arrow-down"></i>
+        </button>
+        <span id="cartBadge" style="display:none;">0</span>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="heroTop">
+  <div class="heroInner">
+    <div class="eyebrowRow">
+      <span>
+        AW 2025 Collection
+      </span>
+    </div>
+    <h1 class="heroTitle">
+      The <em>Full</em> Collection
+    </h1>
+    <p class="heroText">
+      Every piece, every category — from tailored outfits to refined accessories. Dressed for those who know.
+    </p>
+  </div>
+</div>
+
+<div class="pageWrap">
+
+  <aside class="leftPanel">
+    <div class="panelTitle">
+      Refine
+    </div>
+
+    <div class="filterBlock">
+      <div class="filterLabel">
+        Category
+      </div>
+      <button class="catBtn on" data-cat="all">
+        All Items
+        <span class="pill">
+          30
+        </span>
+      </button>
+      <button class="catBtn" data-cat="outfit">
+        Outfits
+        <span class="pill">
+          6
+        </span>
+      </button>
+      <button class="catBtn" data-cat="tshirt">
+        T-Shirts
+        <span class="pill">
+          6
+        </span>
+      </button>
+      <button class="catBtn" data-cat="pants">
+        Pants
+        <span class="pill">
+          6
+        </span>
+      </button>
+      <button class="catBtn" data-cat="accessories">
+        Accessories
+        <span class="pill">
+          6
+        </span>
+      </button>
+      <button class="catBtn" data-cat="outerwear">
+        Outerwear
+        <span class="pill">
+          6
+        </span>
+      </button>
+    </div>
+
+    <div class="filterBlock">
+      <div class="filterLabel">
+        Sort By
+      </div>
+      <select class="sortDrop" id="sortSelect">
+        <option value="default">
+          Featured
+        </option>
+        <option value="price-asc">
+          Price: Low to High
+        </option>
+        <option value="price-desc">
+          Price: High to Low
+        </option>
+        <option value="name-asc">
+          Name: A–Z
+        </option>
+        <option value="rating">
+          Top Rated
+        </option>
+      </select>
+    </div>
+
+    <div class="filterBlock">
+      <div class="filterLabel">
+        Price Range
+      </div>
+      <div class="priceBox">
+        <div class="priceRow">
+          <input class="priceField" type="number" id="priceMin" placeholder="$0" min="0">
+          <span class="priceDash">
+            —
+          </span>
+          <input class="priceField" type="number" id="priceMax" placeholder="$999" min="0">
+        </div>
+        <button class="goBtn" onclick="applyFilters()">
+          Apply
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="rightContent">
+    <div class="topBar">
+      <div class="itemCount">
+        Showing <span id="countDisplay">30</span> items
+      </div>
+      <div class="viewSwitch">
+        <button class="viewBtn on" id="gridViewBtn" onclick="setView('grid')" title="Grid view">
+          ⊞
+        </button>
+        <button class="viewBtn" id="listViewBtn" onclick="setView('list')" title="List view">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <div class="tagRow" id="activeFilters"></div>
+
+    <div class="grid" id="productsGrid"></div>
+  </main>
+</div>
+
+<div id="cartOverlay"></div>
+
+<div id="cartDrawer">
+  <div class="drawerTop">
+    <span>
+      Your Cart
+    </span>
+    <button class="closeX" id="closeBtn">
+      &#x2715;
+    </button>
+  </div>
+  <div id="cartList"></div>
+  <div id="cartFooter">
+    <div class="totalLine">
+      <span class="totalWord">
+        Total
+      </span>
+      <span id="cartTotal">
+        $0.00
+      </span>
+    </div>
+    <button id="checkoutBtn">
+      Checkout &rarr;
+    </button>
+  </div>
+</div>
+
+
+<div id="pdOverlay">
+  <div id="pdModal">
+    <button id="pdClose">&#x2715;</button>
+    <img id="pdImg" src="" alt="">
+    <div id="pdImgPlaceholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+    <div class="pdBody">
+      <div class="pdEye" id="pdCat"></div>
+      <div class="pdName" id="pdName"></div>
+      <div class="pdStars" id="pdStars"></div>
+      <div class="pdDesc" id="pdDesc"></div>
+      <div class="pdPrice" id="pdPrice"></div>
+      <hr class="pdDivider">
+      <div>
+        <div class="pdLabel">Quantity</div>
+        <div class="pdQtyRow">
+          <button class="pdQtyBtn" id="pdMinus">&#x2212;</button>
+          <div id="pdQtyNum">1</div>
+          <button class="pdQtyBtn" id="pdPlus">&#x2B;</button>
+        </div>
+      </div>
+      <button id="pdAddBtn">Add to Cart</button>
+    </div>
+  </div>
+</div>
+<script src="js/shop1.js"></script>
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  document.querySelector('.eyebrowRow').style.opacity = '0';
+  document.querySelector('.eyebrowRow').style.transform = 'translateY(20px)';
+  document.querySelector('.eyebrowRow').style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+  document.querySelector('.heroTitle').style.opacity = '0';
+  document.querySelector('.heroTitle').style.transform = 'translateY(30px)';
+  document.querySelector('.heroTitle').style.transition = 'all 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1)';
+  document.querySelector('.heroText').style.opacity = '0';
+  document.querySelector('.heroText').style.transform = 'translateY(20px)';
+  document.querySelector('.heroText').style.transition = 'all 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+
+  setTimeout(() => {
+    document.querySelector('.eyebrowRow').style.opacity = '1';
+    document.querySelector('.eyebrowRow').style.transform = 'translateY(0)';
+  }, 100);
+
+  setTimeout(() => {
+    document.querySelector('.heroTitle').style.opacity = '1';
+    document.querySelector('.heroTitle').style.transform = 'translateY(0)';
+  }, 250);
+
+  setTimeout(() => {
+    document.querySelector('.heroText').style.opacity = '1';
+    document.querySelector('.heroText').style.transform = 'translateY(0)';
+  }, 400);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.catBtn').forEach((btn, i) => {
+    btn.style.opacity = '0';
+    btn.style.transform = 'translateX(-20px)';
+    btn.style.transition = `all 0.5s ${0.05 * i}s cubic-bezier(0.16, 1, 0.3, 1)`;
+    setTimeout(() => {
+      btn.style.opacity = '1';
+      btn.style.transform = 'translateX(0)';
+    }, 100 + (i * 50));
+  });
+
+  const filterBlocks = document.querySelectorAll('.filterBlock');
+  filterBlocks.forEach((block, i) => {
+    block.style.opacity = '0';
+    block.style.transform = 'translateY(20px)';
+    block.style.transition = `all 0.6s ${0.1 * i}s cubic-bezier(0.16, 1, 0.3, 1)`;
+    setTimeout(() => {
+      block.style.opacity = '1';
+      block.style.transform = 'translateY(0)';
+    }, 200 + (i * 100));
+  });
+
+  const topBar = document.querySelector('.topBar');
+  topBar.style.opacity = '0';
+  topBar.style.transform = 'translateY(20px)';
+  topBar.style.transition = 'all 0.6s 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+  setTimeout(() => {
+    topBar.style.opacity = '1';
+    topBar.style.transform = 'translateY(0)';
+  }, 500);
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe Noire — Access</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="../css/login4.css"
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="../images/Gemini_Generated_Image_udci8dudci8dudci.png" type="image/png">
+</head>
+<body>
+
+<div class="left-side">
+  <div class="bg-img" id="bgImg"></div>
+  <div class="bg-overlay"></div>
+  <div class="left-content">
+    <span class="brand-mark">Cafe Noire</span>
+    <span class="brand-sub">Premium Coffee Experience</span>
+    <div class="left-quote">Crafted for those<br>who <em>appreciate.</em></div>
+    <div class="left-line"></div>
+  </div>
+</div>
+
+<div class="right-side">
+
+  <div class="panel active" id="panel-login">
+    <div class="panel-eyebrow">Welcome back</div>
+    <h1 class="panel-title">Sign <em>In</em></h1>
+    <p class="panel-sub">Access your account and continue your experience.</p>
+
+    <div class="fields">
+      <div class="field">
+        <input type="email" id="login-email" placeholder=" " autocomplete="username">
+        <label for="login-email">Email Address</label>
+        <span class="err-msg">Please enter a valid email.</span>
+      </div>
+      <div class="field">
+        <input type="password" id="login-pass" class="has-eye" placeholder=" " autocomplete="current-password">
+        <label for="login-pass">Password</label>
+        <button type="button" class="eye-btn" onclick="toggleEye('login-pass', this)">👁</button>
+        <span class="err-msg">Password is required.</span>
+      </div>
+    </div>
+
+    <div class="extras" style="margin-top:1rem;">
+      <label class="check-label">
+        <input type="checkbox" id="remember"> Remember me
+      </label>
+      <button class="link-btn" onclick="switchTo('forgot')">Forgot password?</button>
+    </div>
+
+    <button class="submit-btn" onclick="submitLogin()"><span>Login to Cafe Noire</span></button>
+
+    <div class="divider">or</div>
+    <p class="switch-line">No account yet? <button onclick="switchTo('register')">Create one</button></p>
+  </div>
+
+  <div class="panel" id="panel-register">
+    <button class="back-btn" onclick="switchTo('login')">Back to login</button>
+    <div class="panel-eyebrow">New member</div>
+    <h1 class="panel-title">Create <em>Account</em></h1>
+    <p class="panel-sub">Join Cafe Noire and unlock the full collection.</p>
+
+    <div class="fields">
+      <div class="field-row">
+        <div class="field">
+          <input type="text" id="reg-fname" placeholder=" ">
+          <label for="reg-fname">First Name</label>
+          <span class="err-msg">Required.</span>
+        </div>
+        <div class="field">
+          <input type="text" id="reg-lname" placeholder=" ">
+          <label for="reg-lname">Last Name</label>
+          <span class="err-msg">Required.</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <input type="email" id="reg-email" placeholder=" ">
+        <label for="reg-email">Email Address</label>
+        <span class="err-msg">Enter a valid email.</span>
+      </div>
+
+      <div class="field">
+        <input type="password" id="reg-pass" class="has-eye" placeholder=" ">
+        <label for="reg-pass">Password</label>
+        <button type="button" class="eye-btn" onclick="toggleEye('reg-pass', this)">👁</button>
+        <span class="err-msg">Min. 8 characters.</span>
+      </div>
+
+      <div class="field">
+        <input type="password" id="reg-pass2" class="has-eye" placeholder=" ">
+        <label for="reg-pass2">Confirm Password</label>
+        <button type="button" class="eye-btn" onclick="toggleEye('reg-pass2', this)">👁</button>
+        <span class="err-msg">Passwords do not match.</span>
+      </div>
+
+      <div style="border-top:1px solid #333333;padding-top:1.2rem;margin-top:0.4rem;">
+        <div class="panel-eyebrow" style="margin-bottom:0.8rem;">Payment Details</div>
+      </div>
+
+      <div class="field">
+        <input type="text" id="reg-cardholder" placeholder=" ">
+        <label for="reg-cardholder">Cardholder Name</label>
+        <span class="err-msg">Required.</span>
+      </div>
+
+      <div class="field">
+        <input type="number" id="reg-cardnum" placeholder=" " maxlength="16">
+        <label for="reg-cardnum">Card Number — 0000 0000 0000 0000</label>
+        <span class="err-msg">Enter a valid card number.</span>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <input type="date" id="reg-expiry" placeholder=" ">
+          <label for="reg-expiry">Expiry Date</label>
+          <span class="err-msg">Required.</span>
+        </div>
+        <div class="field">
+          <input type="number" id="reg-cvv" placeholder=" " maxlength="3">
+          <label for="reg-cvv">CVV</label>
+          <span class="err-msg">Required.</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="submit-btn" onclick="submitRegister()"><span>Create Account</span></button>
+
+    <div class="divider">or</div>
+    <p class="switch-line">Already a member? <button onclick="switchTo('login')">Sign in</button></p>
+  </div>
+
+  <div class="panel" id="panel-forgot">
+    <button class="back-btn" onclick="switchTo('login')">Back to login</button>
+    <div class="panel-eyebrow">Recovery</div>
+    <h1 class="panel-title">Reset <em>Password</em></h1>
+    <p class="panel-sub">Enter your email and we'll send a verification code.</p>
+
+    <div class="fields">
+      <div class="field">
+        <input type="email" id="forgot-email" placeholder=" ">
+        <label for="forgot-email">Email Address</label>
+        <span class="err-msg">Enter a valid email.</span>
+      </div>
+    </div>
+
+    <button class="submit-btn" onclick="submitForgot()"><span>Send Verification Code</span></button>
+  </div>
+
+  <div class="panel" id="panel-verify">
+    <button class="back-btn" onclick="switchTo('forgot')">Back</button>
+    <div class="panel-eyebrow">Verification</div>
+    <h1 class="panel-title">Enter <em>Code</em></h1>
+    <p class="panel-sub">We sent a 6-digit code to <strong id="verify-email-display" style="color:#c8a96e"></strong></p>
+
+    <div class="code-row">
+      <input type="text" maxlength="1" class="code-digit" inputmode="numeric" pattern="[0-9]">
+      <input type="text" maxlength="1" class="code-digit" inputmode="numeric" pattern="[0-9]">
+      <input type="text" maxlength="1" class="code-digit" inputmode="numeric" pattern="[0-9]">
+      <input type="text" maxlength="1" class="code-digit" inputmode="numeric" pattern="[0-9]">
+      <input type="text" maxlength="1" class="code-digit" inputmode="numeric" pattern="[0-9]">
+      <input type="text" maxlength="1" class="code-digit" inputmode="numeric" pattern="[0-9]">
+    </div>
+
+    <button class="submit-btn" onclick="submitVerify()"><span>Verify &amp; Continue</span></button>
+
+    <p class="switch-line" style="margin-top:1rem;">
+      Didn't receive it? <button onclick="resendCode()">Resend code</button>
+    </p>
+  </div>
+
+  <div class="panel" id="panel-newpass">
+    <div class="panel-eyebrow">Almost done</div>
+    <h1 class="panel-title">New <em>Password</em></h1>
+    <p class="panel-sub">Choose a strong new password for your account.</p>
+
+    <div class="fields">
+      <div class="field">
+        <input type="password" id="new-pass" class="has-eye" placeholder=" ">
+        <label for="new-pass">New Password</label>
+        <button type="button" class="eye-btn" onclick="toggleEye('new-pass', this)">👁</button>
+        <span class="err-msg">Min. 8 characters.</span>
+      </div>
+      <div class="field">
+        <input type="password" id="new-pass2" class="has-eye" placeholder=" ">
+        <label for="new-pass2">Confirm New Password</label>
+        <button type="button" class="eye-btn" onclick="toggleEye('new-pass2', this)">👁</button>
+        <span class="err-msg">Passwords do not match.</span>
+      </div>
+    </div>
+
+    <button class="submit-btn" onclick="submitNewPass()"><span>Update Password</span></button>
+  </div>
+
+  <div class="panel" id="panel-success">
+    <div class="success-icon">✓</div>
+    <div class="panel-eyebrow" style="justify-content:center;">All done</div>
+    <h1 class="panel-title" style="text-align:center;">Password <em>Updated</em></h1>
+    <p class="panel-sub" style="text-align:center;margin-bottom:2rem;">Your password has been successfully changed.</p>
+    <button class="submit-btn" onclick="switchTo('login')"><span>Back to Login</span></button>
+  </div>
+<script src="../js/login4.js"></script>
+</div>
+</body>
+</html>
